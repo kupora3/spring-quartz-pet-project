@@ -1,0 +1,39 @@
+plugins {
+    id "org.springframework.boot" version "2.5.4"
+    id "io.spring.dependency-management" version "1.0.11.RELEASE"
+    id "java"
+}
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    //WEB
+    implementation group: 'org.springframework', name: 'spring-web', version: '5.3.10'
+    //JDBC
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-jdbc', version: '2.5.4'
+    runtimeOnly ('com.microsoft.sqlserver:mssql-jdbc:9.4.0.jre16')
+    //QARTZ
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-quartz', version: '2.5.4'
+
+    //BATCH
+    implementation group: 'org.springframework.batch', name: 'spring-batch-core', version: '4.3.3'
+
+    //Mapstruct&Lombok
+    compileOnly("org.mapstruct:mapstruct:${mapstructVersion}", "org.projectlombok:lombok:${lombokVersion}")
+    implementation("org.mapstruct:mapstruct:${mapstructVersion}")
+    annotationProcessor("org.projectlombok:lombok:${lombokVersion}", "org.mapstruct:mapstruct-processor:${mapstructVersion}")
+
+
+    testImplementation ("org.testcontainers:mssqlserver:1.14.3")
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.7.0'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.7.0'
+}
+
+test {
+    useJUnitPlatform()
+}

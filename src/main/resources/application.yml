@@ -1,0 +1,16 @@
+spring:
+  quartz:
+    job-store-type: jdbc
+  datasource:
+    jdbc-url: ${spring.jdbc-params.url}//${spring.jdbc-params.host}:${spring.jdbc-params.port};DatabaseName=${spring.jdbc-params.dbName}
+    driver-class-name: com.microsoft.sqlserver.jdbc.SQLServerDriver
+    username: sa
+    password: upitec
+  jdbc-params:
+    url: 'jdbc:sqlserver:'
+    host: 172.21.10.100
+    port: 1433
+    dbName: RetailCloudSpringQuartzTest
+using:
+  spring:
+    schedulerFactory: true
